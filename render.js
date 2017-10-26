@@ -1,11 +1,12 @@
-import React           from 'react';
-import ReactDOMServer  from 'react-dom/server';
-import PhonesContainer from './components/containers/PhonesContainer';
-import ImageContainer  from './components/containers/ImageContainer';
-import DOM             from 'react-dom-factories';
+import React             from 'react';
+import ReactDOMServer    from 'react-dom/server';
+import PhonesContainer   from './components/containers/PhonesContainer';
+import ImageContainer    from './components/containers/ImageContainer';
+import TextBoxContainer  from './components/containers/TextBoxContainer';
+import BlogItemContainer from './components/containers/BlogItemContainer';
 
 // const result = ReactDOMServer.renderToString(
-const result = ReactDOMServer.renderToStaticMarkup(
+const result1 = ReactDOMServer.renderToStaticMarkup(
     React.createElement(PhonesContainer)
 );
 
@@ -13,26 +14,12 @@ const result2 = ReactDOMServer.renderToStaticMarkup(
     React.createElement(ImageContainer)
 );
 
-const Segment = (props) => (
-    DOM.div(
-        {
-            style: {border: '1px solid red'}
-        },
-        props.children
-    )
-);
-
-const Hello = ({ name }) => (
-    React.createElement(
-        Segment,
-        {},
-        DOM.div(null, `Hello, ${name}!`)
-    )
-);
-
 const result3 = ReactDOMServer.renderToStaticMarkup(
-    React.createElement(Hello, { name: 'Thinknetica' })
+    React.createElement(TextBoxContainer)
 );
 
+const result4 = ReactDOMServer.renderToStaticMarkup(
+    [React.createElement(BlogItemContainer), React.createElement(BlogItemContainer), React.createElement(BlogItemContainer)]
+);
 
-export default result2;
+export default (result4);

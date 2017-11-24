@@ -4,7 +4,7 @@ import BlogPageContainer from './components/containers/BlogPageContainer'
 
 // const result = ReactDOMServer.renderToString(
 const result = ReactDOMServer.renderToStaticMarkup(
-    React.createElement(BlogPageContainer)
+  React.createElement(BlogPageContainer)
 );
 
 export default (result);

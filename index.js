@@ -13,6 +13,10 @@ application.get('/', function(req, res){
   res.json(posts);
 });
 
+application.get('/post/:id', function(req, res){
+  res.json(posts[req.params.id-1]);
+});
+
 application.listen(3001, function() {
   console.log('[SERVER] => localhost:3001');
 });

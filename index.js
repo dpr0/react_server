@@ -10,7 +10,12 @@ application.use(cors()) ;
 
 application.get('/', function(req, res){
   // res.send(result);
-  console.log(`[SERVER] => posts`);
+  console.log('[SERVER] => posts');
+  res.json(posts);
+});
+
+application.get('/chart', function(req, res){
+  console.log('[SERVER] => posts');
   res.json(posts);
 });
 
@@ -20,15 +25,17 @@ application.get('/post/:id', function(req, res){
 });
 
 application.post('/post/:id/like', function(req, res){
-  posts[req.params.id-1].like += 1;
-  console.log(`[SERVER] => post #${req.params.id-1} => ${posts[req.params.id-1].like} likes`);
-  res.json(posts[req.params.id-1].likes);
+  const id = req.params.id, post = posts[id-1];
+  post.like += 1;
+  console.log(`[SERVER] => post #${id-1} => ${post.like} likes`);
+  res.json({count: post.like});
 });
 
 application.post('/post/:id/dislike', function(req, res){
-  posts[req.params.id-1].dislike += 1;
-  console.log(`[SERVER] => post #${req.params.id-1} => ${posts[req.params.id-1].dislike} dislikes`);
-  res.json(posts[req.params.id-1].dislikes);
+  const id = req.params.id, post = posts[id-1];
+  post.dislike += 1;
+  console.log(`[SERVER] => post #${id-1} => ${post.dislike} dislikes`);
+  res.json({count: post.dislike});
 });
 
 application.listen(3001, function() {

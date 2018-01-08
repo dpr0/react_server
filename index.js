@@ -26,7 +26,7 @@ application.get('/post/:id', function (req, res) {
 });
 
 application.post('/post/:id', function (req, res) {
-  const id = req.query['id'], post = posts[id];
+  const post = posts[req.query['id']];
   switch (req.query['type']) {
     case 'like':
       post.like += 1;

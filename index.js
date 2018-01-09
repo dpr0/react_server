@@ -11,7 +11,14 @@ application.use(cors());
 application.get('/', function (req, res) {
   // res.send(result);
   console.log('[SERVER] => posts');
-  res.json(posts);
+  res.json({items: posts, page: parseInt(req.query['page']), postsLength: posts.length});
+});
+
+application.post('/', function (req, res) {
+  console.log('[SERVER] => posts page');
+  const pageNum = parseInt(req.query['page']);
+  const chunkedPosts = _.chunk(posts, 2);
+  res.json({items: chunkedPosts ? chunkedPosts[pageNum] : posts, page: pageNum, postsLength: posts.length});
 });
 
 application.get('/chart', function (req, res) {

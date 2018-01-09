@@ -21,6 +21,25 @@ module.exports = {
       }
     },
     {
+      id: 11,
+      like: 20,
+      dislike: 1,
+      title: 'Пост #11',
+      body: 'hello world',
+      image: {
+        src: 'https://instagram.fhrk1-1.fna.fbcdn.net/t51.2885-15/' +
+        'e35/21479794_123830621607748_4363161708689096704_n.jpg',
+        height: '230',
+        width: '150',
+        alt: 'qwerty'
+      },
+      meta: {
+        author: 'dpro',
+        createdAt: formatedDate('03-10-2017 11:11:11'),
+        updatedAt: formatedDate('04-10-2017 11:11:11'),
+      }
+    },
+    {
       id: 2,
       like: 15,
       dislike: 30,

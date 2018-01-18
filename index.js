@@ -3,10 +3,12 @@ const _ = require('lodash');
 // var result = require('./render').default;
 
 var express = require('express');
+var morgan = require('morgan');
 var application = express();
 var cors = require('cors');
 var posts = require('./data').posts;
 application.use(cors());
+application.use(morgan('combined'));
 
 application.get('/', function (req, res) {
   // res.send(result);
@@ -28,8 +30,9 @@ application.get('/chart', function (req, res) {
 
 application.get('/post/:id', function (req, res) {
   posts = _.keyBy(posts, 'id');
+  const post = posts[req.params.id];
   console.log(`[SERVER] GET => post #${req.params.id}`);
-  res.json(posts[req.params.id]);
+  res.json(post);
 });
 
 application.post('/post/:id', function (req, res) {
@@ -49,3 +52,8 @@ application.post('/post/:id', function (req, res) {
 application.listen(3001, function () {
   console.log('[SERVER] => localhost:3001');
 });
+
+console.log('===================================|||========');
+_.map(application._router.stack, (r) => {
+  if (r.route) { console.log(r.route.stack[0].method + '   ' + r.route.path); }
+} );
